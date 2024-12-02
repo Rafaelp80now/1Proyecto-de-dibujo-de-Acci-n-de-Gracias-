@@ -1,0 +1,57 @@
+import simplegui
+
+# Variable para el lienzo
+frame = simplegui.create_frame("Día de Acción de Gracias", 600, 400)
+
+# Función para manejar el dibujo
+def draw_handler(canvas):
+    # Dibujo del pavo
+    dibujar_pavo(canvas, 300, 200)
+    
+    # Dibujo de hojas de otoño
+    dibujar_hojas(canvas, 100, 100)
+    dibujar_hojas(canvas, 500, 100)
+    
+    # Dibujo de calabazas
+    dibujar_calabaza(canvas, 150, 300)
+    dibujar_calabaza(canvas, 450, 300)
+    
+    # Dibujo de la mesa de cosecha
+    dibujar_mesa(canvas, 50, 350, 500, 30)
+    
+# Función para dibujar el pavo
+def dibujar_pavo(canvas, x, y):
+    # Cuerpo del pavo (círculo grande)
+    canvas.draw_circle((x, y), 60, 2, "brown", "brown")
+    
+    # Cabeza del pavo (círculo pequeño)
+    canvas.draw_circle((x, y - 90), 25, 2, "yellow", "yellow")
+    
+    # Pico del pavo (triángulo)
+    canvas.draw_polygon([(x, y - 110), (x - 15, y - 95), (x + 15, y - 95)], 2, "orange", "orange")
+    
+    # Cola del pavo (varios círculos)
+    for i in range(6):
+        canvas.draw_circle((x - 50 + i * 20, y - 150 + (i % 2) * 20), 20, 2, "red", "red")
+    
+# Función para dibujar hojas de otoño
+def dibujar_hojas(canvas, x, y):
+    canvas.draw_circle((x, y), 20, 2, "orange", "orange")
+
+# Función para dibujar calabazas
+def dibujar_calabaza(canvas, x, y):
+    # Cuerpo de la calabaza (círculo grande)
+    canvas.draw_circle((x, y), 50, 2, "orange", "orange")
+    
+    # Rabillo de la calabaza (línea)
+    canvas.draw_line((x, y - 35), (x, y - 70), 5, "brown")
+    
+# Función para dibujar la mesa de cosecha
+def dibujar_mesa(canvas, x, y, w, h):
+    canvas.draw_polygon([(x, y), (x + w, y), (x + w, y + h), (x, y + h)], 2, "brown", "brown")
+
+# Crear el frame y asignar el manejador de dibujo
+frame.set_draw_handler(draw_handler)
+
+# Iniciar el frame
+frame.start()
